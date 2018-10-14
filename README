@@ -22,17 +22,17 @@ Main Library used (Flask, jquery, picnic).
 - [ ] Docker Implementation
 
 
-### Instructions
+## Instructions
 
 
 1. Run hidden/simulation.py
 2. Use demo/demo for admin login
 
 
-### Warning
+## Warning
 
 This project needs python to run.  
 You will need to install python and the following library for this project to run.  
 
-⋅⋅* Flask-SQLAlchemy  
+* Flask-SQLAlchemy  
 
