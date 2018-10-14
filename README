@@ -1,12 +1,12 @@
 # Simple Management System for University
 
-### WIP Project
+## WIP Project
 
 This is a project I'm doing in my spare time.  
 Language used (html, css, javascript, python).  
 Main Library used (Flask, jquery, picnic).  
 
-### Features and Todo
+## Features and Todo
 
 - [x] Login with permission for students and admin (Todo adding teacher and others)
 - [x] Security check on endpoints for permission
@@ -15,9 +15,24 @@ Main Library used (Flask, jquery, picnic).
 - [ ] UI Improvments
 - [ ] Adding More Endpoints (students chat etc)
 
-### Todo (Low Priority)
+## Todo (Low Priority)
 
 - [ ] Mobile First
 - [ ] Improving Security
 - [ ] Docker Implementation
+
+
+### Instructions
+
+
+1. Run hidden/simulation.py
+2. Use demo/demo for admin login
+
+
+### Warning
+
+This project needs python to run.  
+You will need to install python and the following library for this project to run.  
+
+⋅⋅* Flask-SQLAlchemy  
 
