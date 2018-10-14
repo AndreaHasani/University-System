@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block head %}
+<meta name="description" content="Zhvillues programesh i pasionuar i cili kerkon gjithmonë sfidën e ardhshme" />
+{{ super() }}
+{% endblock %}
+<!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+{% block content %}
+<nav class="mobile-menu">
+<label for="show-menu" class="show-menu"><span>Menu</span><div class="lines"></div></label>
+<input type="checkbox" id="show-menu">
+<a href="#" id="title">Admin</a>
+<ul id="menu">
+    <li><a href="{{ url_for('index') }}">Home</a></li>
+    <li><a href="{{ url_for('addUsers') }}">Add Users</a></li>
+    <li><a href="{{ url_for('statistika') }}">Statistika</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+</ul>
+</nav>
+
+<div class="main-container wrapper">
+    {%- if request.path == url_for('index') -%}
+    <div class="main admin flex one">
+	<div class="input-div">
+	    <input placeholder="Search..." type="text" id="table-search"name="search"><br>
+	</div>
+
+
+	    <table class="primary adm-table">
+		<thead>
+		    <tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Birthday</th>
+			<th>Avarage</th>
+			<th>Permission</th>
+		    </tr>
+		</thead>
+		<tbody>
+		    {% for user in users %}
+		    <tr>
+			<td><a href="{{ url_for('editUser', page_id=user.id) }}">{{ user.id }}</a></td>
+			<td>{{ user.name }}</td>
+			<td>{{ user.birthday }}</td>
+			<td>{{ user.avarage }}</td>
+			<td>{{ user.permission }}</td>
+		    </tr>
+		    {% endfor %}
+		</tbody>
+	    </table>
+    </div>
+    {% endif %}
+
+    {%- if request.path == url_for('addUsers') -%}
+
+
+    <div class="addUsers">
+	<form action="{{ url_for ("recordAdd") }}" class="flex four eight-1200" method="POST">
+	    <div class="aUsrinput"><input type="text" placeholder="Name" name="name"></div>
+	    <div class="aUsrinput"><input type="text" placeholder="Password" name="password"></div>
+	    <div class="aUsrinput"><input type="text" placeholder="Birthday YYYY/MM/DD" name="birthday"></div>
+	    <div class="aUsrinput"><input type="text" placeholder="Subjects" name="subjects"></div>
+	    <div class="aUsrinput"><input type="text" placeholder="Subjects Failed" name="subjectsFailed"></div>
+	    <div class="aUsrinput"><input type="text" placeholder="Avarage" name="avarage"></div>
+	    <div class="aUsrinput"><input type="text" placeholder="Permission" name="permission"></div>
+	    <div class="aUsrinput"><input class="button" type="submit" value="Submit"></div>
+	</form>
+    </div>
+
+    {% endif %}
+
+
+    {%- if user is defined -%}
+
+    <div class="editUser">
+	<div class="first-info flex five">
+	    <div><input type="text" value="{{ user.name }}"></div>
+	    <div><input type="text" value="{{ user.password }}"></div>
+	    <div><input type="text" value="{{ user.birthday }}"></div>
+	    <div><input type="text" value="{{ user.avarage / 100 }}"></div>
+	    <div><input type="text" value="{{ user.permission }}"></div>
+	</div>
+	<div class="flex three second-info">
+	    <div class="subjects two-third">
+		<select id="subjects" name="subjects" size="4" class="one">
+		    {% for subject in subjects %}
+		    <option value="{{ subject }}">{{ subject }}</option>
+		    {% endfor %}
+		</select>
+		<div class="together">
+		    <div class="middle-button arrow-btn">
+			<input id="add-button" class="button" type="submit" value="-->">
+		    </div>
+		    <div class="middle-button arrow-btn">
+			<input id="remove-button" class="button" type="submit" value="<--">
+		    </div>
+		</div>
+	    </div>
+	    <div>
+		<select id="subjects_failed" name="subjects_failed" size="4">
+		    {% for subject in subct_failed %}
+		    <option value="{{ subject }}">{{ subject }}</option>
+		    {% endfor %}
+		</select>
+	    </div>
+	</div>
+
+	<div class="submit-button">
+	    <input class="button" type="submit" value="Submit">
+	</div>
+
+    </div>
+
+    {% endif %}
+
+
+
+</div> <!-- #main-container -->
+
+{% endblock %}

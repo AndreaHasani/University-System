@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block head %}
+<meta name="description" content="Zhvillues programesh i pasionuar i cili kerkon gjithmonë sfidën e ardhshme" />
+{{ super() }}
+{% endblock %}
+<!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+{% block content %}
+<nav class="mobile-menu">
+<label for="show-menu" class="show-menu"><span>Menu</span><div class="lines"></div></label>
+<input type="checkbox" id="show-menu">
+<a href="#" id="title">User</a>
+<ul id="menu">
+    <li><a href="#">Home</a></li>
+    <li><a href="{{ url_for('index') }}">Add Users</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+</ul>
+</nav>
+
+<div class="main-container">
+    {% if status == 'Admin' %}
+    <div class="main adm flex one">
+
+	<table class="primary">
+	    <thead>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Password</th>
+		<th>Birthday</th>
+		<th>Subjects</th>
+		<th>Subjects_Failed</th>
+		<th>Mesatarja</th>
+		<th>Permission</th>
+	    </thead>
+	    <tbody>
+	    {% for user in users %}
+		<td>{{ user.id }}</td>
+		<td>{{ user.name }}</td>
+		<td>{{ user.password }}</td>
+		<td>{{ user.birthday }}</td>
+		<td>{{ user.subjects }}</td>
+		<td>{{ user.subjects_failed }}</td>
+		<td>{{ user.mesatarja }}</td>
+		<td>{{ user.permission }}</td>
+	    {% endfor %}
+	    </tbody>
+	</table>
+    </div>
+    {% endif %}
+</div> <!-- #main-container -->
+
+{% endblock %}

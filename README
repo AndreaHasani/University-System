@@ -1,0 +1,16 @@
+# Simple Management System for University
+
+### WIP Project
+
+This is a project I'm doing in my spare time. Language used (html, css, javascript, python).
+Main Library used (Flask, jquery, picnic)
+
+### Features
+
+- [x] Login with permission for students and admin (Todo adding teacher and others)
+- [x] Security check on endpoints for permission
+- [ ] Adding charts for showing the university statistic for students
+- [ ] Responsive (Barely)
+- [ ] Students stats for each student
+- [X] Easy database profile editing for the admin
+

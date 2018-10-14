@@ -1,0 +1,95 @@
+.user form {
+    padding: 50px 0;
+    text-align: center;
+
+    div input {
+	width: 80%;
+    }
+
+    .button-class {
+	position: relative;
+
+	input {
+	    position: absolute;
+	    bottom: 5px;
+	    left: 20px;
+	    padding: 7px 50px;
+    }
+    }
+
+}
+
+
+.login form {
+    padding: 50px 0;
+    text-align: center;
+
+    .input-div input {
+	width: 40%;
+    }
+
+    .button-class {
+	padding-top: 30px;
+
+	input {
+	padding: 15px 55px;
+    }
+    }
+
+}
+
+
+.admin {
+
+    .input-div {
+	padding: 50px 0;
+	text-align: center;
+
+	input {
+	    width: 600px;
+	}
+    }
+
+    .button-class {
+	padding-top: 30px;
+
+	input {
+	padding: 15px 55px;
+    }
+    }
+
+}
+
+.addUsers form {
+    padding-top: 200px;
+
+    .aUsrinput {
+    }
+
+
+    .button {
+	width: 80%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+    }
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 0.40;
+    font-weight: bold;
+    font-size: 75%;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    opacity: 0.40;
+    font-size: 75%;
+    font-weight: bold;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    opacity: 0.40;
+    font-size: 75%;
+    font-weight: bold;
+}
