@@ -15,7 +15,13 @@ deget = ["Maths", "English", "History",
          "Astronomy", "Computer", "Science",
          "Algebra", "Geomtry", "Calculus"]
 
-db = sql.connect("./database/universitySystem.db")
+try:
+    db = sql.connect("./database/universitySystem.db")
+except Exception as e:
+    os.makedirs("database")
+    db = sql.connect("./database/universitySystem.db")
+
+
 c = db.cursor()
 
 createTable = '''
@@ -52,7 +58,7 @@ c.execute(InsertRecord, ('demo', 'demo', '2014-01-22',
 db.commit()
 
 addRecords = []
-for user in range(50000):  # Simulation 50000 Users
+for user in range(10000):  # Simulation 10000 Users
     name = fake.name()
     password = fake.password(length=8, special_chars=False)
     birthday = fake.date_this_century()
