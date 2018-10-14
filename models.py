@@ -9,7 +9,7 @@ class Shkolla(db.Model):
     name = db.Column(db.String)
     password = db.Column(db.String)
     birthday = db.Column(db.String)
-    subjects = db.Column(db.String)
+    field = db.Column(db.String)
     subjects_failed = db.Column(db.String)
     avarage = db.Column(db.Integer)
     permission = db.Column(db.String)
@@ -22,3 +22,21 @@ class Shkolla(db.Model):
         self.subjects_failed = subjects_failed
         self.avarage = avarage
         self.permission = permission
+
+
+
+class Subjects(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String)
+    teacher = db.Column(db.String)
+
+class Schedule(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String)
+    subjects = db.Column(db.String)
+    head_teacher = db.Column(db.String)
+    monday = db.Column(db.String)
+    tuesday = db.Column(db.String)
+    wednesday = db.Column(db.String)
+    thursday = db.Column(db.String)
+    friday = db.Column(db.String)

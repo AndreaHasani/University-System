@@ -44,7 +44,7 @@
 			<td><a href="{{ url_for('editUser', page_id=user.id) }}">{{ user.id }}</a></td>
 			<td>{{ user.name }}</td>
 			<td>{{ user.birthday }}</td>
-			<td>{{ user.avarage }}</td>
+			<td>{{ user.avarage / 100 }}</td>
 			<td>{{ user.permission }}</td>
 		    </tr>
 		    {% endfor %}
@@ -86,7 +86,7 @@
 	    <div class="subjects two-third">
 		<select id="subjects" name="subjects" size="4" class="one">
 		    {% for subject in subjects %}
-		    <option value="{{ subject }}">{{ subject }}</option>
+		    <option value="{{ subject.name }}">{{ subject.name }}</option>
 		    {% endfor %}
 		</select>
 		<div class="together">
@@ -101,7 +101,7 @@
 	    <div>
 		<select id="subjects_failed" name="subjects_failed" size="4">
 		    {% for subject in subct_failed %}
-		    <option value="{{ subject }}">{{ subject }}</option>
+		    <option value="{{ subject.name }}">{{ subject.name }}</option>
 		    {% endfor %}
 		</select>
 	    </div>

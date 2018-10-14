@@ -20,35 +20,31 @@
 </nav>
 
 <div class="main-container">
-    {% if status == 'Admin' %}
-    <div class="main adm flex one">
+    <div class="main student flex two">
+	<div class="profile sixth">
+	    <img src="http://placehold.jp/200x200.png"></img>
+	    <p> {{ username.name }}</p>
+	</div>
+	<div class="subjects">
+	    <table class="primary adm-table">
+		<thead>
+		    <tr>
+			<th>Time</th>
+			<th>Subjects</th>
+			<th>Subjects Grade</th>
+		    </tr>
+		</thead>
+		<tbody>
+		    {% for subject in subjects %}
+		    <tr>
+			<td>{{ subject }}</td>
+		    </tr>
+		    {% endfor %}
+		</tbody>
+	    </table>
+	</div>
 
-	<table class="primary">
-	    <thead>
-		<th>ID</th>
-		<th>Name</th>
-		<th>Password</th>
-		<th>Birthday</th>
-		<th>Subjects</th>
-		<th>Subjects_Failed</th>
-		<th>Mesatarja</th>
-		<th>Permission</th>
-	    </thead>
-	    <tbody>
-	    {% for user in users %}
-		<td>{{ user.id }}</td>
-		<td>{{ user.name }}</td>
-		<td>{{ user.password }}</td>
-		<td>{{ user.birthday }}</td>
-		<td>{{ user.subjects }}</td>
-		<td>{{ user.subjects_failed }}</td>
-		<td>{{ user.mesatarja }}</td>
-		<td>{{ user.permission }}</td>
-	    {% endfor %}
-	    </tbody>
-	</table>
     </div>
-    {% endif %}
 </div> <!-- #main-container -->
 
 {% endblock %}

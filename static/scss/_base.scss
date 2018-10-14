@@ -195,3 +195,14 @@ select {
     background: none !important;
     height: 10em !important;
 }
+
+
+.student {
+    padding: 4em;
+    .profile {
+	text-align: center;
+	img {
+	    border-radius: 50%;
+	}
+    }
+}

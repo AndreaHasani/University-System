@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, jsonify, abort, redirect, url_for
-from models import Shkolla, db
+from sqlalchemy import or_
+from models import Shkolla, db, Schedule, Subjects
 from app import application
 from restApi import *
 
@@ -12,11 +13,16 @@ def index():
 
         if s == "admin":
             users = db.session.query(Shkolla).all()
+            # fieldSubjects = db.session.query(Schedule.subjects).filter_by(u
+            # subjects = db.session.query(Subjects).filter([Shkolla.id == v for v in Shkolla.)
             return render_template("loginAdm.html",
                                    username=username, status=s, users=users)
+        else:
+            user = db.session.query(Shkolla).filter_by(name=username).first()
+            # subjects = user.subjects.split(',')
 
-        return render_template("loginUsr.html",
-                               username=username, status=s)
+            return render_template("loginUsr.html",
+                                   username=user, status=s, subjects=None)
 
     return render_template("index.html")
 
@@ -41,12 +47,18 @@ def addUsers():
 def editUser(page_id):
     if session.get('status', '') == 'admin':
         user = db.session.query(Shkolla).filter_by(id=page_id).first()
-        subjects = list(set([x.strip() for x in user.subjects.split(',')]))
-        subjectsFailed = list(set([x.strip()
-                                   for x in user.subjects_failed.split(',')]))
+        fieldSchedule = db.session.query(
+            Schedule).filter_by(name=user.field).first()
+        fieldSubjectsIndex = [x.split("|")[0].strip()
+                              for x in fieldSchedule.subjects.split(',')]
+        fieldSubjects = db.session.query(
+            Subjects).filter(Subjects.id.in_(fieldSubjectsIndex)).all()
 
-        return render_template("loginAdm.html", user=user,
-                               subjects=subjects, subct_failed=subjectsFailed)
+        subjectsFailed = db.session.query(
+            Subjects).filter(Subjects.id.in_(user.subjects_failed)).all()
+
+
+        return render_template("loginAdm.html", user=user, subjects=fieldSubjects, subct_failed=subjectsFailed)
     else:
         return redirect(url_for('index'))
 

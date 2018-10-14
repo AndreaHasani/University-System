@@ -12,10 +12,14 @@ Media Queries
     /*Make dropdown links appear inline*/
 
     .mobile-menu {
+	#menu {
+	    background-color: #677d8c;
+	    margin-bottom: 2em;
+	}
 
 	#title {
-	display: none;
-    }
+	    display: none;
+	}
 	ul {
 	    position: static;
 	    display: none;
@@ -28,13 +32,15 @@ Media Queries
 	    min-width: 140px;
 	}
 	.show-menu {
+	    border-bottom: solid;
 	    display: block;
+	    border-bottom-color: #586d7b;
 	}
 	.lines {
 	    border-bottom: 15px double #f8f8f8;
 	    border-top: 5px solid #f8f8f8;
 	    content: "";
-	    height: 5px;
+	    height: 1.4em;
 	    width: 20px;
 	    padding-right: 15px;
 	    float: right;
