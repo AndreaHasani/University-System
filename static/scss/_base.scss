@@ -201,8 +201,17 @@ select {
     padding: 4em;
     .profile {
 	text-align: center;
+	margin: 0 auto;
 	img {
 	    border-radius: 50%;
+	}
+
+	.name {
+	    font-size: 1.5em;
+	}
+	.field, .email {
+	    font-size: 1em;
+	    margin: .5em 0;
 	}
     }
 }
