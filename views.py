@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, session, jsonify, abort, redi
 from sqlalchemy import or_
 from models import Shkolla, db, Schedule, Subjects
 from app import application
+from functions import getUserInfo
 from restApi import *
+from collections import defaultdict
 
 
 @application.route("/", methods=["GET"])
@@ -19,10 +21,15 @@ def index():
                                    username=username, status=s, users=users)
         else:
             user = db.session.query(Shkolla).filter_by(name=username).first()
-            # subjects = user.subjects.split(',')
+            userInfo = getUserInfo(db, user)
 
-            return render_template("loginUsr.html",
-                                   username=user, status=s, subjects=None)
+            if not userInfo:
+                return redirect(url_for('index'))
+            else:
+                return render_template("loginUsr.html",
+                                       username=user, status=s,
+                                       subjects=sorted(userInfo,
+                                                       key=lambda x: x[1]))
 
     return render_template("index.html")
 
@@ -55,10 +62,9 @@ def editUser(page_id):
             Subjects).filter(Subjects.id.in_(fieldSubjectsIndex)).all()
 
         subjectsFailed = db.session.query(
-            Subjects).filter(Subjects.id.in_(user.subjects_failed)).all()
+            Subjects).filter(Subjects.id.in_(user.subjects_grade)).all()
 
-
-        return render_template("loginAdm.html", user=user, subjects=fieldSubjects, subct_failed=subjectsFailed)
+        return render_template("loginAdm.html", user=user, subjects=fieldSubjects)
     else:
         return redirect(url_for('index'))
 

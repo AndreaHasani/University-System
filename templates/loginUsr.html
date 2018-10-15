@@ -29,15 +29,19 @@
 	    <table class="primary adm-table">
 		<thead>
 		    <tr>
-			<th>Time</th>
-			<th>Subjects</th>
+			<th>Subject Id</th>
+			<th>Subject</th>
+			<th>Subject Time</th>
 			<th>Subjects Grade</th>
 		    </tr>
 		</thead>
 		<tbody>
-		    {% for subject in subjects %}
+		    {% for id, time, subject, grade in subjects %}
 		    <tr>
+			<td>{{ id }}</td>
 			<td>{{ subject }}</td>
+			<td>{{ time }}</td>
+			<td>{{ grade }}</td>
 		    </tr>
 		    {% endfor %}
 		</tbody>

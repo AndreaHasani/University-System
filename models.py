@@ -10,7 +10,7 @@ class Shkolla(db.Model):
     password = db.Column(db.String)
     birthday = db.Column(db.String)
     field = db.Column(db.String)
-    subjects_failed = db.Column(db.String)
+    subjects_grade = db.Column(db.String)
     avarage = db.Column(db.Integer)
     permission = db.Column(db.String)
 

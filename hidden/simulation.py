@@ -13,6 +13,9 @@ def fakeTime():
     hours = random.randint(7, 18)
     minutes = ['00', 15, 30, 45]
 
+    if 0 <= hours <= 9:
+        hours = '0' + str(hours)
+
     return "%s:%s" % (hours, random.choice(minutes))
 
 
@@ -24,7 +27,7 @@ def CreateTable(c, db):
     password TEXT NOT NULL UNIQUE,
     birthday TEXT NOT NULL,
     field TEXT NOT NULL,
-    subjects_failed TEXT,
+    subjects_grade TEXT,
     avarage INTEGER NOT NULL,
     permission TEXT NOT NULL
     );'''
@@ -69,12 +72,12 @@ def generateDummyRecords(c, studyField, subjects):
         password = fake.password(length=8, special_chars=False)
         birthday = fake.date_this_century()
         field = random.choice(studyField)
-        subjects_failed = [str(subjects.index(s)) for s in random.sample(
-            subjects, random.randint(0, 4))]
+        subjects_grade = ["%s|%s" % (subjects.index(s), random.randint(4, 10))
+                          for s in subjects]
         avarage = random.uniform(6, 10)
 
         ShkollaRecords.append([name, password, str(birthday), field,
-                               ', '.join(subjects_failed),
+                               ', '.join(subjects_grade),
                                int(float('%.2f' % avarage) * 100), "student"])
 
     SchedulerRecords = []
@@ -112,7 +115,7 @@ def insertRecords(c, Shkolla, Scheduler, Subjects):
     password,
     birthday,
     field,
-    subjects_failed,
+    subjects_grade,
     avarage,
     permission)
     VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)
